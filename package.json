@@ -1,6 +1,6 @@
 {
   "name": "fangtian",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "product some files for sep",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,7 @@
     "fangtian": "bin/fangtian"
   },
   "homepage": "https://github.com/zzfScarecrow/fangtian#readme",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.1.0",
     "chalk": "^2.4.1",
     "commander": "^2.18.0",
