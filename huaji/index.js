@@ -5,7 +5,7 @@ const chalk = require('chalk')
 var babel = require('@babel/core')
 
 function FangTianHuaJi() {
-  this.cssJs = `import './index.css'\nimport '../../styles/index.css'`
+  this.cssJs = `import './index.css'\nimport '../../style/index.css'`
 }
 
 FangTianHuaJi.prototype.excute = function() {
