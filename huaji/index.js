@@ -134,6 +134,7 @@ FangTianHuaJi.prototype.tail = function() {
   })
   shelljs.cp('./package.json', './sep/package.json')
   shelljs.cp('./package-lock.json', './sep/package-lock.json')
+  shelljs.rm('-f', '.babelrc')
 }
 
 FangTianHuaJi.prototype.clear = function() {
