@@ -1,8 +1,8 @@
 # fangtian(方天画戟)
 
-1、给 dist/components/{COMPONENTNAME}/styles/css.js 添加以下内容：
+## What does fangtian do?
 
-```javascript
-import './index.css'
-import '../../styles/index.css'
-```
+fangtian aims to support sep building process, deal with some cases that rollup can't do.
+Such as copy less file to sep(dist) folder, copy package.json and so on.
+
+For more information, check code files and comments.
