@@ -1,5 +1,5 @@
 {
-  "name": "fangtian",
+  "name": "@skywork/fangtian",
   "version": "1.1.1",
   "description": "product some files for sep",
   "main": "index.js",
