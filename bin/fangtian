@@ -9,16 +9,16 @@ const fangTianHuaJi = new huaJi.FangTianHuaJi()
 program
   .version(version)
   .usage('')
-  .option('-e --excute', 'generate style files', function() {
+  .option('-e --excute', 'generate style files', function () {
     fangTianHuaJi.excute()
   })
-  .option('-c --clear', 'delete dist file', function() {
+  .option('-c --clear', 'delete dist file', function () {
     fangTianHuaJi.clear()
   })
   .option(
     '-t, --tail',
     'complete the last steps, like move .tsx for styles to dist',
-    function() {
+    function () {
       fangTianHuaJi.tail()
     }
   )
@@ -26,9 +26,9 @@ program
 
 // if (!program.args.length) program.help()
 
-process.on('uncaughtException', function(err) {
-  //打印出错误
+process.on('uncaughtException', function (err) {
+  // 打印出错误
   console.log(err)
-  //打印出错误的调用栈方便调试
+  // 打印出错误的调用栈方便调试
   console.log(err.stack)
 })

@@ -6,7 +6,7 @@ var babel = require('@babel/core')
 
 const exists = fs.existsSync
 
-function FangTianHuaJi() {
+function FangTianHuaJi () {
   this.cssJs = `import './index.css'\nimport '../../style/index.css'`
   this.babelrc = `
   {\n
@@ -17,7 +17,7 @@ function FangTianHuaJi() {
     `
 }
 
-FangTianHuaJi.prototype.excute = function() {
+FangTianHuaJi.prototype.excute = function () {
   /**
    * Simple copy the index.js into root of es file,
    * in order to use babel-plugin-import
@@ -34,7 +34,7 @@ FangTianHuaJi.prototype.excute = function() {
    */
   if (!exists('.babelrc')) {
     shelljs.touch('.babelrc')
-    fs.writeFileSync('.babelrc', this.babelrc, err => {
+    fs.writeFileSync('.babelrc', this.babelrc, (err) => {
       err && console.log(chalk.red(err))
     })
   }
@@ -50,7 +50,7 @@ FangTianHuaJi.prototype.excute = function() {
    * variables in a object, so we have to keep our
    * less source to the dist file
    */
-  glob.sync('src/components/*/style/{*.tsx,*.less}').forEach(path => {
+  glob.sync('src/components/*/style/{*.tsx,*.less}').forEach((path) => {
     const isLess = /.less$/.test(path)
     const cssOutputDir = `${path
       .replace(/^src/, 'sep')
@@ -65,7 +65,7 @@ FangTianHuaJi.prototype.excute = function() {
     }
     if (!exists(cssOutputPath)) {
       shelljs.touch(`${cssOutputPath}`)
-      fs.writeFileSync(cssOutputPath, this.cssJs, err => {
+      fs.writeFileSync(cssOutputPath, this.cssJs, (err) => {
         err && console.log(chalk.red(err))
       })
     }
@@ -82,7 +82,7 @@ FangTianHuaJi.prototype.excute = function() {
    * Keep less files in style folder, the reason is
    * same as above
    */
-  glob.sync('src/components/style/**/*.less').forEach(path => {
+  glob.sync('src/components/style/**/*.less').forEach((path) => {
     const lessOutputPath = path
       .replace(/^src/, 'sep')
       .replace(/components/, 'es')
@@ -106,8 +106,8 @@ FangTianHuaJi.prototype.excute = function() {
  * And then copy package.json and package-lock.json
  * to sep folder.
  */
-FangTianHuaJi.prototype.tail = function() {
-  glob.sync('src/components/**/index.tsx').forEach(path => {
+FangTianHuaJi.prototype.tail = function () {
+  glob.sync('src/components/**/index.tsx').forEach((path) => {
     const reg = new RegExp(/style/)
     const isStyle = reg.test(path.split('/')[3]) || reg.test(path.split('/')[2])
 
@@ -123,7 +123,7 @@ FangTianHuaJi.prototype.tail = function() {
     })
 
     // lib version
-    babel.transformFile(path, {}, function(err, result) {
+    babel.transformFile(path, {}, function (err, result) {
       const outputPath = path
         .replace(/^src/, 'sep')
         .replace(/components/, 'lib')
@@ -134,14 +134,14 @@ FangTianHuaJi.prototype.tail = function() {
   })
   shelljs.cp('./package.json', './sep/package.json')
   shelljs.cp('./package-lock.json', './sep/package-lock.json')
+  shelljs.cp('./README.md', './sep/README.md')
   shelljs.rm('-f', '.babelrc')
 }
 
-FangTianHuaJi.prototype.clear = function() {
+FangTianHuaJi.prototype.clear = function () {
   shelljs.rm('-rf', 'sep')
 }
 
-const fangTianHuaJi = new FangTianHuaJi()
 module.exports = {
   FangTianHuaJi
 }
